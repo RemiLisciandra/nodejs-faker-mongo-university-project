@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var faker = require("@faker-js/faker").faker;
 mongoose.set('strictQuery', true);
 // Connexion à la base de données
-mongoose.connect('mongodb://localhost:2717/university', {
+mongoose.connect('mongodb://localhost:27017/university', {
     useNewUrlParser: true
 });
 // Initialisation des variables

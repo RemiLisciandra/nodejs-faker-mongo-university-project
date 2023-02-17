@@ -1,5 +1,7 @@
-import { Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { Evaluation } from './Evaluation';
+
+const mongoose = require('mongoose');
 
 export interface Student {
     firstname: string;
@@ -36,3 +38,4 @@ export const StudentSchema = new Schema<Student>({
         ref: 'Evaluation'
     }]
 });
+module.exports = mongoose.model("Student", StudentSchema);

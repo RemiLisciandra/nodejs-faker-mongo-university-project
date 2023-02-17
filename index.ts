@@ -1,20 +1,22 @@
 // Importation de la librairie faker et mongodb
+import {Student} from "./src/models/Student";
+
 const mongoose = require('mongoose');
 const { faker } = require("@faker-js/faker");
 
 // import des interfaces
-import { Student, StudentSchema } from "./src/models/Student";
-import { Evaluation } from "./src/models/Evaluation";
+import { Evaluation, EvaluationSchema } from "./src/models/Evaluation";
+const Student = require('src/models/Student');
 
 mongoose.set('strictQuery', true);
 
 // Connexion à la base de données
-mongoose.connect('mongodb://localhost:2717/university', {
+mongoose.connect('mongodb://localhost:27017/university', {
     useNewUrlParser: true,
 });
 
 // Initialisation des variables
-const students: Student[] = [];
+//const students: Student[] = [];
 
 // Parcours des students
 for (let i = 0; i < 1000; i++) {
@@ -35,4 +37,5 @@ for (let i = 0; i < 1000; i++) {
         evaluations: evaluations
     };
     students.push(student);
+    students.save();
 }

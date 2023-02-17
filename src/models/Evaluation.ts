@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 export interface Evaluation {
     value: number;
-    date: Date
+    date: Date;
 }
 
 export const EvaluationSchema = new Schema<Evaluation>({
