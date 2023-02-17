@@ -2,6 +2,7 @@ import { Schema } from 'mongoose';
 
 export interface Evaluation {
     value: number;
+    date: Date
 }
 
 export const EvaluationSchema = new Schema<Evaluation>({
@@ -10,5 +11,9 @@ export const EvaluationSchema = new Schema<Evaluation>({
         required: true,
         min: 0,
         max: 20
+    },
+    date: {
+        type: Date,
+        required: true,
     }
 });
