@@ -1,12 +1,8 @@
 // Importation de la librairie faker et mongodb
-import {Student} from "./src/models/Student";
-
 const mongoose = require('mongoose');
-const { faker } = require("@faker-js/faker");
+const {faker} = require("@faker-js/faker");
 
-// import des interfaces
-import { Evaluation, EvaluationSchema } from "./src/models/Evaluation";
-const Student = require('src/models/Student');
+const StudentModel = require('src/models/Student');
 
 mongoose.set('strictQuery', true);
 
@@ -15,27 +11,22 @@ mongoose.connect('mongodb://localhost:27017/university', {
     useNewUrlParser: true,
 });
 
-// Initialisation des variables
-//const students: Student[] = [];
-
 // Parcours des students
-for (let i = 0; i < 1000; i++) {
-    const evaluations: Evaluation[] = [];
-    for (let j = 0; j < 10; j++) {
-        const evaluation: Evaluation = {
-            value: faker.random.numeric({ min: 0, max: 20 }),
-            date: faker.date.between('2022-01-01', '2022-12-31')
-        }
-        evaluations.push(evaluation);
-    }
-    const student: Student = {
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        gender: faker.name.gender(),
-        country: faker.address.country(),
-        birthdate: faker.date.between('2002-01-01', '2006-12-31'),
-        evaluations: evaluations
-    };
-    students.push(student);
-    students.save();
+async function main() {
+    let firstname = faker.name.firstName();
+    let lastName = faker.name.lastName();
+    let gender = faker.name.sexType();
+    let country = faker.address.country();
+    let birthdate = faker.date.birthdate();
+
+    const newStudent = new StudentModel({
+        firstname: firstname,
+        lastname: lastName,
+        gender: gender,
+        country: country,
+        birthdate: birthdate
+    });
+    await newStudent.save();
 }
+
+main().catch(err => console.log(err));

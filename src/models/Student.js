@@ -2,6 +2,7 @@
 exports.__esModule = true;
 exports.StudentSchema = void 0;
 var mongoose_1 = require("mongoose");
+var mongoose = require('mongoose');
 exports.StudentSchema = new mongoose_1.Schema({
     firstname: {
         type: String,
@@ -28,3 +29,4 @@ exports.StudentSchema = new mongoose_1.Schema({
             ref: 'Evaluation'
         }]
 });
+module.exports = mongoose.model("Student", exports.StudentSchema);
